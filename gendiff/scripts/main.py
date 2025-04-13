@@ -1,4 +1,5 @@
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
+import json
 
 
 def main():
@@ -7,8 +8,11 @@ def main():
     parser.add_argument('first_file')
     parser.add_argument('second_file')
     parser.add_argument('-f', '--format', help='set format of output')
-    parser.parse_args()
-    print("Hello from python-project-50!")
+    args = parser.parse_args()
+    content1 = json.dumps(json.load(open(args.first_file)))
+    content2 = json.dumps(json.load(open(args.second_file)))
+    print(content1)
+    print(content2)
 
 
 if __name__ == "__main__":
