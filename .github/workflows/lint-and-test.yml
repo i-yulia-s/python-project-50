@@ -1,4 +1,4 @@
-name: lent-and-test
+name: lint-and-test
 on: push
 jobs:
   build:
