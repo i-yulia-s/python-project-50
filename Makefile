@@ -12,3 +12,6 @@ lint:
 
 test:
 	uv run pytest -s -vvvv
+
+test-cov:
+	uv run pytest --cov
