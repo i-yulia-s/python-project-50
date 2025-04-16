@@ -1,11 +1,12 @@
-from argparse import ArgumentParser, Namespace
-from gendiff.compare import compare_flat
 import json
+from argparse import ArgumentParser
+
+from gendiff.compare import compare_flat
 
 
 def main():
-    parser = ArgumentParser(prog='gendiff', \
-        description='A utility that finds difference between two configuration files.')
+    desc = 'A utility that finds difference between two configuration files.'
+    parser = ArgumentParser(description=desc)
     parser.add_argument('first_file')
     parser.add_argument('second_file')
     parser.add_argument('-f', '--format', help='set format of output')
