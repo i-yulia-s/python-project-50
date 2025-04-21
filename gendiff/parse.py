@@ -8,7 +8,7 @@ FORMATS = ['json', 'yaml']
 
 def parse_args(arg_list: list[str] | None):
     if arg_list is not None and len(arg_list) != 2:
-        raise Exception('''Invalid arguments.
+        raise ValueError('''Invalid arguments.
 The function takes a list of two strings with filepaths.''')
     desc = 'A utility that finds difference between two configuration files.'
     parser = ArgumentParser(description=desc)    
@@ -20,26 +20,25 @@ The function takes a list of two strings with filepaths.''')
 
 def get_format(file):
     try:
-        format = file[file.rindex('.') + 1::]
+        file_format = file[file.rindex('.') + 1::]
     except ValueError:
-        pass
-        raise Exception(f'''Cannot get file format: {file}
+        raise ValueError(f'''Cannot get file format: {file}
 Make sure you've specified correct filename and path.''')
-    if format == 'yml':
-        format = 'yaml'
-    if format not in FORMATS:
-        raise Exception(f'''File format is not supported: {file}
+    if file_format == 'yml':
+        file_format = 'yaml'
+    if file_format not in FORMATS:
+        raise ValueError(f'''File format is not supported: {file}
 Make sure you've specified correct filename and path.''')
-    return format
+    return file_format
 
 
 def open_file(file):
     try:
-        format = get_format(file)
-    except Exception as e:
+        file_format = get_format(file)
+    except ValueError as e:
         print(e)
         exit(1)
-    match format:
+    match file_format:
         case 'json':
             try:
                 return json.load(open(file))
