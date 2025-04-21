@@ -35,3 +35,7 @@ def test_open_file(dict1):
     assert open_file('tests/test_data/file1.yml') == dict1
     with pytest.raises(SystemExit):
         open_file('tests/test_data/file3.json')
+    with pytest.raises(SystemExit):
+        open_file('tests/test_data/file3.yml')
+    with pytest.raises(SystemExit):
+        open_file('tests/test_data/file1json')
