@@ -1,5 +1,5 @@
 from gendiff.compare import compare_flat
-from gendiff.parse import parse_args, open_file
+from gendiff.parse import open_file, parse_args
 
 
 def main(arg_list: list[str] | None = None) -> str:

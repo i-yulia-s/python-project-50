@@ -7,7 +7,7 @@ FORMATS = ['json', 'yaml']
 
 
 def parse_args(arg_list: list[str] | None):
-    if arg_list != None and len(arg_list) != 2:
+    if arg_list is not None and len(arg_list) != 2:
         raise Exception('''Invalid arguments.
 The function takes a list of two strings with filepaths.''')
     desc = 'A utility that finds difference between two configuration files.'
@@ -43,13 +43,13 @@ def open_file(file):
         case 'json':
             try:
                 return json.load(open(file))
-            except:
+            except (FileNotFoundError, json.JSONDecodeError):
                 print(f'Cannot open {file}')
                 exit(1)
         case 'yaml':
             try:
                 return yaml.load(open(file), Loader=yaml.Loader)
-            except:
+            except (FileNotFoundError, yaml.YAMLError):
                 print(f'Cannot open {file}')
                 exit(1)
     
