@@ -1,20 +1,21 @@
-import json
-from argparse import ArgumentParser
-
 from gendiff.compare import compare_flat
+from gendiff.parse import parse_args, open_file
 
 
-def main():
-    desc = 'A utility that finds difference between two configuration files.'
-    parser = ArgumentParser(description=desc)
-    parser.add_argument('first_file')
-    parser.add_argument('second_file')
-    parser.add_argument('-f', '--format', help='set format of output')
-    args = parser.parse_args()
-    content1 = json.load(open(args.first_file))
-    content2 = json.load(open(args.second_file))
+def main(arg_list: list[str] | None = None) -> str:
+    try:
+        args = parse_args(arg_list)
+    except Exception as e:
+        print(e)
+        exit(1)
+    content1 = open_file(args.first_file)
+    content2 = open_file(args.second_file)
     return compare_flat(content1, content2)
 
 
+def stdout_main():
+    print(main())
+
+
 if __name__ == "__main__":
-    main()
+    stdout_main()

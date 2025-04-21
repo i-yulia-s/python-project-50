@@ -10,6 +10,9 @@ install:
 lint:
 	uv tool run ruff check gendiff/
 
+lint-fix:
+	uv tool run ruff check --fix gendiff/
+
 test:
 	uv run pytest -s -vvvv
 
