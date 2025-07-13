@@ -31,8 +31,8 @@ def test_get_format():
         get_format('myfile.txt')
 
 def test_open_file(dict1):
-    assert open_file('tests/test_data/file1.json') == dict1
-    assert open_file('tests/test_data/file1.yml') == dict1
+    assert open_file('tests/test_data/file1_flat.json') == dict1
+    assert open_file('tests/test_data/file1_flat.yml') == dict1
     with pytest.raises(SystemExit):
         open_file('tests/test_data/file3.json')
     with pytest.raises(SystemExit):
