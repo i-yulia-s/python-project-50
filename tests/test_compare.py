@@ -1,6 +1,6 @@
 import pytest
 import json
-from gendiff.compare import compare_flat, compare
+from gendiff.compare import compare
 
 
 @pytest.fixture
@@ -18,7 +18,7 @@ def expected_flat():
      
 
 def test_compare_flat(file1_flat, file2_flat, expected_flat):
-    assert compare_flat(file1_flat, file2_flat) == expected_flat        
+    assert compare(file1_flat, file2_flat) == expected_flat        
 
 
 @pytest.fixture

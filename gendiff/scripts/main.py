@@ -1,4 +1,4 @@
-from gendiff.compare import compare_flat
+from gendiff.compare import compare
 from gendiff.parse import open_file, parse_args
 
 
@@ -10,7 +10,7 @@ def main(arg_list: list[str] | None = None) -> str:
         exit(1)
     content1 = open_file(args.first_file)
     content2 = open_file(args.second_file)
-    return compare_flat(content1, content2)
+    return compare(content1, content2)
 
 
 def stdout_main():
