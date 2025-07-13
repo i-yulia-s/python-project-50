@@ -9,18 +9,14 @@ class Diff:
         self.change = change
         self.children = children
 
-    def __str__(self):
-        return f'''Key "{self.key}": {self.value1} to {self.value2} ({self.change})
-        Children: {self.children}'''
-
     @staticmethod
     def create(key, value1, value2, change):
-        return Diff(key, value1=value1, value2=value2, \
+        return Diff(key, value1=value1, value2=value2, 
                     change=change, children=None)
     
     @staticmethod
     def create_parent(key, children):
-        return Diff(key, value1=None, value2=None, \
+        return Diff(key, value1=None, value2=None, 
                     change=None, children=children)
 
 
@@ -49,7 +45,7 @@ def compare(content1, content2, formatter="stylish"):
         for key in all_keys:
             value1 = arr1.get(key)
             value2 = arr2.get(key)
-            if (isinstance(value1, dict) \
+            if (isinstance(value1, dict) 
                 and isinstance(value2, dict)):
                 children = write_nodes(value1, value2)
                 result.append(Diff.create_parent(key, children))

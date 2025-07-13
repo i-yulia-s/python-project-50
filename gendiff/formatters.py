@@ -1,12 +1,13 @@
 def jsonize_value(value):
-        match value:
-            case None:
-                return "null"
-            case False:
-                return "false"
-            case True:
-                return "true"
-        return value
+    match value:
+        case None:
+            return "null"
+        case False:
+            return "false"
+        case True:
+            return "true"
+    return value
+
 
 def jsonize_dict(dikt, depth):
     output = '{\n'
@@ -19,6 +20,7 @@ def jsonize_dict(dikt, depth):
         output += f'{indent}    {key}: {value}\n'
     output += indent + '}'
     return output
+
 
 def format_changes(diff, depth):
     output = ''
@@ -44,13 +46,15 @@ def format_changes(diff, depth):
     # print(f'Formatted as {output}')
     return output
 
+
 def format_as_json(diff):
     def read_nodes(nodes, depth):
         result = '{\n'
         indent = '    ' * depth
         for node in nodes:
             if node.children:
-                result += f'{indent}    {node.key}: {read_nodes(node.children, depth + 1)}\n'
+                children = read_nodes(node.children, depth + 1)
+                result += f'{indent}    {node.key}: {children}\n'
             else:
                 result += format_changes(node, depth)
         result += indent + '}'
