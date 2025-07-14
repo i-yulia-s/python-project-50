@@ -41,7 +41,6 @@ def compare(content1, content2, formatter="stylish"):
     def write_nodes(arr1, arr2):
         result = []
         all_keys = sorted(arr1.keys() | arr2.keys())
-        print(all_keys)
         for key in all_keys:
             value1 = arr1.get(key)
             value2 = arr2.get(key)
@@ -61,5 +60,5 @@ def compare(content1, content2, formatter="stylish"):
                 result.append(Diff.create(key, value1, value2, change))
         return result
     match formatter:
-        case 'stylish':
+        case _:
             return format_as_json(write_nodes(content1, content2))

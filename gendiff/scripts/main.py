@@ -10,7 +10,7 @@ def main(arg_list: list[str] | None = None) -> str:
         exit(1)
     content1 = open_file(args.first_file)
     content2 = open_file(args.second_file)
-    return compare(content1, content2)
+    return compare(content1, content2, args.format)
 
 
 def stdout_main():

@@ -7,7 +7,7 @@ FORMATS = ['json', 'yaml']
 
 
 def parse_args(arg_list: list[str] | None):
-    if arg_list is not None and len(arg_list) != 2:
+    if arg_list is not None and len(arg_list) < 2:
         raise ValueError('''Invalid arguments.
 The function takes a list of two strings with filepaths.''')
     desc = 'A utility that finds difference between two configuration files.'
