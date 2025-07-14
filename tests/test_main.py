@@ -21,5 +21,8 @@ def test_main(expected_flat, expected):
     assert main(['tests/test_data/file1.json', \
                 'tests/test_data/file2.json', \
                 '--format', 'stylish']) == expected
+    assert main(['tests/test_data/file1.yaml', \
+                'tests/test_data/file2.yaml', \
+                '--format', 'stylish']) == expected
     with pytest.raises(SystemExit):
         main(['tests/test_data/file1.json'])
